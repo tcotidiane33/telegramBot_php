@@ -1,13 +1,33 @@
 <?php
-/*Commenter ses deux lines si vous êtes en production
+/*Commenter ses deux lines si vous êtes en production*/
 error_reporting(E_ALL);
-ini_set('display_errors', 1);*/
+ini_set('display_errors', 1);
 
 // required libs
 require_once __DIR__ . '/src/cinetpay.php';
 include('marchand.php');
 include('commande.php');
 
+// Vérifiez si le formulaire a été soumis
+if (isset($_POST['valider'])) {
+    // Récupérez les informations du client depuis le formulaire
+    $_SESSION['customer_name'] = $_POST['customer_name'];
+    $_SESSION['customer_surname'] = $_POST['customer_surname'];
+    $_SESSION['description'] = $_POST['description'];
+    $_SESSION['amount'] = $_POST['amount'];
+    $_SESSION['currency'] = $_POST['currency'];
+    $_SESSION['customer_email'] = $_POST['customer_email'];
+    $_SESSION['customer_phone'] = $_POST['customer_phone_number'];
+    $_SESSION['customer_address'] = $_POST['customer_address'];
+    $_SESSION['customer_city'] = $_POST['customer_city'];
+    $_SESSION['customer_country'] = $_POST['customer_country'];
+    $_SESSION['customer_state'] = $_POST['customer_state'];
+    // Ajoutez d'autres informations du client selon vos besoins
+
+    // Effectuez d'autres actions nécessaires, par exemple, la redirection vers la passerelle de paiement
+} else {
+    echo "Veuillez passer par le formulaire";
+}
 // La class gère la table "Commande"( A titre d'exemple)
 $commande = new Commande();
 try {
@@ -84,7 +104,7 @@ try {
         $url = $result["data"]["payment_url"];
 
         // ajouter le token à la transaction enregistré
-        /* $commande->update(); */
+        // $commande->update(); 
         //redirection vers l'url de paiement
         header('Location:'.$url);
 

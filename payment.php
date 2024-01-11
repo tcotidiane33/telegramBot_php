@@ -2,6 +2,9 @@
 define('BASE_PATH', __DIR__);
 include_once BASE_PATH . '/src/navbar.php';
 include_once BASE_PATH . '/src/header.php';
+// Récupérez les informations du client
+$_SESSION['customer_name'] = $_POST['customer_name'];
+$_SESSION['customer_surname'] = $_POST['customer_surname'];
 
 // Récupérer les livres sélectionnés de l'URL
 $selectedBooks = isset($_GET['selectedBooks']) ? json_decode(urldecode($_GET['selectedBooks']), true) : [];
@@ -128,7 +131,6 @@ foreach ($selectedBooks as $selectedBook) {
                         <label for="customer_address" class="form-label">Adresse du client</label>
                         <input type="text" class="form-control" id="customer_address" name="customer_address" value="Abidjan Cocody RI13">
                     </div>
-
                     <!-- Informations de localisation du client -->
                     <div class="row">
                         <div class="col-md-6">
