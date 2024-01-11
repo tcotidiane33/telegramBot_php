@@ -1,0 +1,19 @@
+{
+  "name": "ecopayphp",
+  "version": "1.0.0",
+  "description": "cinetpay php sdk https://jepqy.netlify.app",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tcotidiane33/cinetpay.git"
+  },
+  "author": "tcotidiane33",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tcotidiane33/cinetpay/issues"
+  },
+  "homepage": "https://github.com/tcotidiane33/cinetpay#readme"
+}
