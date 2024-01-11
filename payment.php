@@ -2,9 +2,20 @@
 define('BASE_PATH', __DIR__);
 include_once BASE_PATH . '/src/navbar.php';
 include_once BASE_PATH . '/src/header.php';
-// Récupérez les informations du client
-$_SESSION['customer_name'] = $_POST['customer_name'];
-$_SESSION['customer_surname'] = $_POST['customer_surname'];
+
+$_SESSION['customer_name'] = isset($_POST['customer_name']) ? $_POST['customer_name'] : '';
+$_SESSION['customer_surname'] = isset($_POST['customer_surname']) ? $_POST['customer_surname'] : '';
+$_SESSION['amount'] = isset($_POST['amount']) ? $_POST['amount'] : '';
+$_SESSION['currency'] = isset($_POST['currency']) ? $_POST['currency'] : '';
+$_SESSION['bookDetails'] = isset($_POST['bookDetails']) ? $_POST['bookDetails'] : '';
+$_SESSION['customer_email'] = isset($_POST['customer_email']) ? $_POST['customer_email'] : '';
+$_SESSION['customer_phone'] = isset($_POST['customer_phone_number']) ? $_POST['customer_phone_number'] : '';
+$_SESSION['customer_address'] = isset($_POST['customer_address']) ? $_POST['customer_address'] : '';
+$_SESSION['customer_city'] = isset($_POST['customer_city']) ? $_POST['customer_city'] : '';
+$_SESSION['customer_country'] = isset($_POST['customer_country']) ? $_POST['customer_country'] : '';
+$_SESSION['customer_state'] = isset($_POST['customer_state']) ? $_POST['customer_state'] : '';
+
+// var_dump($_POST);
 
 // Récupérer les livres sélectionnés de l'URL
 $selectedBooks = isset($_GET['selectedBooks']) ? json_decode(urldecode($_GET['selectedBooks']), true) : [];
@@ -57,7 +68,7 @@ foreach ($selectedBooks as $selectedBook) {
         <div class="col-sm-8">
             <div class="card p-3">
                 <h2 class="text-center mb-4">Test pay By KondroNetworks</h2>
-                <form action="action.php" method="post" class="card-details ">
+                <form action="action.php" method="post" enctype="multipart/form-data" class="card-details">
 
 
                     <!-- Informations personnelles -->

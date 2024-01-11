@@ -7,14 +7,13 @@ if (isset($_POST['transaction_id']) || isset($_POST['token'])) {
 
     $commande = new Commande();
     $id_transaction = $_POST['transaction_id'];
-
-
     // Récupérez les informations du client depuis la session
     $customer_name = isset($_SESSION['customer_name']) ? $_SESSION['customer_name'] : '';
     $customer_surname = isset($_SESSION['customer_surname']) ? $_SESSION['customer_surname'] : '';
     $description = isset($_SESSION['description']) ? $_SESSION['description'] : '';
     $amount = isset($_SESSION['amount']) ? $_SESSION['amount'] : '';
     $currency = isset($_SESSION['currency']) ? $_SESSION['currency'] : '';
+    $bookDetails = isset($_SESSION['bookDetails']) ? $_SESSION['bookDetails'] : '';
     $customer_email = isset($_SESSION['customer_email']) ? $_SESSION['customer_email'] : '';
     $customer_phone = isset($_SESSION['customer_phone']) ? $_SESSION['customer_phone'] : '';
     $customer_address = isset($_SESSION['customer_address']) ? $_SESSION['customer_address'] : '';
@@ -38,28 +37,28 @@ if (isset($_POST['transaction_id']) || isset($_POST['token'])) {
             echo 'Félicitations, votre paiement a été effectué avec succès. Vous serez redirigé dans quelques secondes.';
             // Construire le message à envoyer sur le canal Telegram
                     $telegramMessage = "
-                    Nouveau paiement reçu‼️
-                    ________________________________
+                    Nouveau paiement reçu ✅✅✅✅✅‼️
+                    ____________
                     🟢 Montant: $amount $currency
-                    -------------------------------
-                    🟢 📚 Description: $description 
-                    -------------------------------
+                    ------------
+                    🟢 📚 Description: $bookDetails 
+                    ------------
                     🟢 Nom du client: $customer_name $customer_surname
-                    ________________________________
+                    ____________
                     🟢 Email du client: $customer_email
-                    ________________________________
+                    ____________
                     🟢 Téléphone du client: $customer_phone
-                    ________________________________
+                    ____________
                     🟢 Adresse du client: $customer_address 
-                    ________________________________
+                    ____________
                     🟢 Ville du client: $customer_city $customer_country $customer_state
-                    ________________________________
-                    Transaction_Id: $id_transaction
-                ";
+                    ____________
+                    🟢 Transaction_Id: $id_transaction
+                ";                
 
                 // Construire l'URL de l'API Telegram
-                $apiToken = "votre_token_bot"; // Remplacez par le vrai token de votre bot
-                $chatId = "@votre_canal"; // Remplacez par le vrai nom de votre canal
+                $apiToken = "6465240701:AAEMjbjOjot0IcMYVjDBhbOLs21pl1RPMdQ"; // Remplacez par le vrai token de votre bot
+                $chatId = "@library_ci"; // Remplacez par le vrai nom de votre canal
                 $telegramUrl = "https://api.telegram.org/bot$apiToken/sendMessage?chat_id=$chatId&text=" . urlencode($telegramMessage);
 
                 // Effectuer la requête HTTP POST vers l'API Telegram
@@ -71,7 +70,7 @@ if (isset($_POST['transaction_id']) || isset($_POST['token'])) {
                 } else {
                     echo "Notification Telegram envoyée avec succès.";
                 }
-            echo '<meta http-equiv="refresh" content="5;url=index.php">';
+            echo '<meta http-equiv="refresh" content="10;url=index.php">';
             die();
         } else {
             echo 'Echec, votre paiement a échoué.';

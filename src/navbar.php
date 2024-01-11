@@ -1,5 +1,5 @@
 <!-- navbar.php -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php">LIBRARY_CI</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,6 @@
         <li class="nav-item">
           <a class="nav-link" href="payment.php">Paiement</a>
         </li>
-        <!-- Ajoutez d'autres liens de navigation si nécessaire -->
       </ul>
     </div>
   </div>
