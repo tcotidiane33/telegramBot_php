@@ -21,8 +21,6 @@ include_once BASE_PATH . '/src/header.php';
 </div>
 
 <!-- Include your JavaScript files here -->
-<script type="module" src="src/data/data.js"></script>
-<script type="module" src="src/data/app.js"></script>
 
 <?php
 include_once 'src/footer.php';

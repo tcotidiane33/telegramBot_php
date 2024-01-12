@@ -1,4 +1,5 @@
-    
+<script type="module" src="src/data/app.js"></script>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.cinetpay.com/seamless/main.js" type="text/javascript"></script>
     <!-- Scripts Bootstrap (jQuery inclus) -->

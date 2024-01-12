@@ -1,5 +1,4 @@
 // app.js
-import { getData } from './data.js';
 import { updateCartItems } from './cart.js'; // Importez la fonction de mise à jour du panier depuis cart.js
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -181,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (existingBook) {
           existingBook.quantity += quantity || 1;
         } else {
-          selectedBookIds.push({ id: bookId, quantity: quantity || 1 });
+          selectedBookIds.push({ id: bookId, quantity: quantity || 1});
         }
 
         updateCart();
