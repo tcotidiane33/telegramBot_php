@@ -35,12 +35,13 @@
         p {
             font-size: 18px;
             margin-bottom: 20px;
-            background-color: #5cb85c;
+            color: #5cb85c;
 
         }
 
         a {
             color: #fff;
+            background-color: #5cb85c;
             text-decoration: none;  
             font-weight: bold;
 
@@ -53,7 +54,7 @@
         <?php echo '<meta http-equiv="refresh" content="10;url=success_page.php">';  ?>
         <h2>Paiement Réussi!</h2>
         <p>Merci pour votre paiement. Vous recevrez une confirmation par e-mail.</p>
-        <p>Vous serez redirigé automatiquement dans quelques secondes. Si ce n'est pas le cas, <a href="cinetpay/index.php">cliquez ici</a>.</p>
+        <p>Vous serez redirigé automatiquement dans quelques secondes. Si ce n'est pas le cas, <a href="/../../cinetpay/index.php">cliquez ici</a>.</p>
     </div>
 </body>
 </html>

@@ -12,10 +12,10 @@ $commande = new Commande();
 // $data = getData();
 try {
     if (isset($_POST['valider'])) {
-        //...
+        // Récupération des données du formulaire
         $customer_name = isset($_POST['customer_name']) ? $_POST['customer_name'] : '';
         $customer_surname = isset($_POST['customer_surname']) ? $_POST['customer_surname'] : '';
-        $description = isset($_POST['bookDetails']) ? $_POST['bookDetails'] : '';
+        $description = isset($_POST['bookDetails']) ? strip_tags($_POST['bookDetails']) : '';
         $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
         $currency = isset($_POST['currency']) ? $_POST['currency'] : '';
         $customer_email = isset($_POST['customer_email']) ? $_POST['customer_email'] : '';
@@ -24,7 +24,8 @@ try {
         $customer_city = isset($_POST['customer_city']) ? $_POST['customer_city'] : '';
         $customer_country = isset($_POST['customer_country']) ? $_POST['customer_country'] : '';
         $customer_state = isset($_POST['customer_state']) ? $_POST['customer_state'] : '';
-        //...
+                // $customer_zip_code = isset($_POST['customer_zip_code']) ? $_POST['customer_zip_code'] : '';
+
     } else {
         echo "Veuillez passer par le formulaire";
     }
@@ -70,10 +71,10 @@ try {
         "customer_city" => "Abidjan", // ville du client
         "customer_country" => "CI", //Le pays du client, la valeur à envoyer est le code ISO du pays (code à deux chiffre) ex : CI, BF, US, CA, FR
         "customer_state" => "Lagunes", //L’état dans de la quel se trouve le client. Cette valeur est obligatoire si le client se trouve au États Unis d’Amérique (US) ou au Canada (CA)
-        "customer_zip_code" => "01" //Le code postal du client 
+        // "customer_zip_code" => "01" //Le code postal du client 
     );
     // enregistrer la transaction dans votre base de donnée
-    $commande->create(); 
+    $commande->create($formData); 
 
     $CinetPay = new CinetPay($site_id, $apikey, $VerifySsl = false); //$VerifySsl=true <=> Pour activerr la verification ssl sur curl 
     $result = $CinetPay->generatePaymentLink($formData);
@@ -82,7 +83,7 @@ try {
         $url = $result["data"]["payment_url"];
 
         // ajouter le token à la transaction enregistré
-        $commande->update(); 
+        // $commande->update(); 
         //redirection vers l'url de paiement
         header('Location:' . $url);
     }

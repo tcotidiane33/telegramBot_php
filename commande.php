@@ -20,23 +20,89 @@ class Commande
     {
         return  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/";
     }
-    public function create($customer_name, $amount, $currency, $transId, $otherDetails)
+    public function create($formData)
     {
-        // Logique pour créer une nouvelle commande dans votre base de données.
-        // Utilisez les paramètres pour insérer les détails dans la table 'commande'.
+        // Vérifiez si les données nécessaires sont présentes dans $formData
+        if (
+            !isset($formData['transaction_id']) ||
+            !isset($formData['amount']) ||
+            !isset($formData['currency']) ||
+            !isset($formData['customer_name']) ||
+            !isset($formData['customer_surname']) ||
+            !isset($formData['description']) ||
+            !isset($formData['notify_url']) ||
+            !isset($formData['return_url']) ||
+            !isset($formData['channels']) ||
+            !isset($formData['invoice_data']) ||
+            !isset($formData['customer_email']) ||
+            !isset($formData['customer_phone_number']) ||
+            !isset($formData['customer_address']) ||
+            !isset($formData['customer_city']) ||
+            !isset($formData['customer_country']) ||
+            !isset($formData['customer_state']) 
+            // !isset($formData['customer_zip_code'])
+        ) {
+            throw new Exception("Certaines données obligatoires de la transaction sont manquantes.");
+        }
+
+        // Utilisez ces données pour insérer les détails dans la table 'commande'.
+        // Assurez-vous de remplacer les valeurs ci-dessous par les clés appropriées de $formData.
 
         $conn = new PDO("mysql:host=localhost;dbname=cinet", "root", "");
 
-        $stmt = $conn->prepare("INSERT INTO commande (IDCLIENT, MONTANT, TRANSID, BUYERNAME, PHONE, DATECREATION) 
-                                VALUES (:id_client, :montant, :transid, :buyername, :phone, NOW())");
+        $stmt = $conn->prepare("INSERT INTO commande (IDCLIENT, MONTANT, CURRENCY, TRANSID, BUYERNAME, BUYERSURNAME, DESCRIPTION, CHANNELS, PHONE, EMAIL, BUYERADDRESS, CITY, COUNTRY, BUYERSTATE,  DATECREATION) 
+                        VALUES (:id_client, :montant, :currency, :transid, :buyername, :buyersurname, :description, :channels, :customer_phone, :customer_email, :customer_address, :customer_city, :customer_country, :customer_state,  NOW())");
 
-        $stmt->bindParam(':id_client', $idClient);  // Assurez-vous de définir la valeur de $idClient
-        $stmt->bindParam(':montant', $amount);
-        $stmt->bindParam(':transid', $transId);
-        $stmt->bindParam(':buyername', $customer_name);
-        $stmt->bindParam(':phone', $otherDetails['phone']);  // Assurez-vous de définir la valeur correcte
+        // Définir les valeurs des paramètres
+        $idClient = uniqid();
+        $stmt->bindParam(':id_client', $idClient);  
+        $stmt->bindParam(':montant', $formData['amount']);
+        $stmt->bindParam(':currency', $formData['currency']);
+        $stmt->bindParam(':transid', $formData['transaction_id']);
+        $stmt->bindParam(':buyername', $formData['customer_name']);
+        $stmt->bindParam(':buyersurname', $formData['customer_surname']);
+        $stmt->bindParam(':description', $formData['description']);
+        $stmt->bindParam(':channels', $formData['channels']);
+        $stmt->bindParam(':customer_phone', $formData['customer_phone_number']); 
+        $stmt->bindParam(':customer_email', $formData['customer_email']); 
+        $stmt->bindParam(':customer_address', $formData['customer_address']); 
+        $stmt->bindParam(':customer_city', $formData['customer_city']); 
+        $stmt->bindParam(':customer_country', $formData['customer_country']); 
+        $stmt->bindParam(':customer_state', $formData['customer_state']); 
+        // $stmt->bindParam(':customer_code', $formData['customer_zip_code']); 
+
+        // $stmt->bindParam(':abonnement', $formData['abonnement']); // Assurez-vous que 'abonnement' est dans $formData
+        // $stmt->bindParam(':methode', $formData['methode']); // Assurez-vous que 'methode' est dans $formData
+        // $stmt->bindParam(':payid', $formData['payid']); // Assurez-vous que 'payid' est dans $formData
+        // $stmt->bindParam(':transstatus', $formData['transstatus']); // Assurez-vous que 'transstatus' est dans $formData
+        // $stmt->bindParam(':signature', $formData['signature']); // Assurez-vous que 'signature' est dans $formData
+        // $stmt->bindParam(':errormessage', $formData['errormessage']); // Assurez-vous que 'errormessage' est dans $formData
+        // $stmt->bindParam(':status', $formData['status']); // Assurez-vous que 'status' est dans $formData
+        // $stmt->bindParam(':datecreation', $formData['datecreation']); // Assurez-vous que 'datecreation' est dans $formData
+        // $stmt->bindParam(':datemodification', $formData['datemodification']); // Assurez-vous que 'datemodification' est dans $formData
+        // $stmt->bindParam(':datepaiement', $formData['datepaiement']); // Assurez-vous que 'datepaiement' est dans $formData
 
         $stmt->execute();
+    }
+    public function select()
+    {
+        try {
+            $conn = new PDO("mysql:host=localhost;dbname=cinet", "root", "");
+
+            // Construire la requête SQL pour sélectionner la ligne la plus récente
+            $sql = "SELECT * FROM commande ORDER BY DATECREATION DESC LIMIT 1";
+
+            // Préparer la requête
+            $stmt = $conn->prepare($sql);
+
+            // Exécuter la requête
+            $stmt->execute();
+
+            // Récupérer et retourner la ligne la plus récente
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la sélection dans la base de données: " . $e->getMessage());
+        }
     }
 
     public function update($transId, $newData)

@@ -54,10 +54,10 @@ if (isset($_POST['cpm_trans_id'])) {
 
             $CinetPay = new CinetPay($site_id, $apikey);
             //On recupère le statut de la transaction dans la base de donnée
-            /* $commande->set_transactionId($id_transaction);
+             $commande->set_transactionId($id_transaction);
                  //Il faut s'assurer que la transaction existe dans notre base de donnée
-             * $commande->getCommandeByTransId();
-             */
+             $commande->getCommandeByTransId();
+             
 
             // On verifie que la commande n'a pas encore été traité
             $VerifyStatusCmd = "1"; // valeur du statut à recupérer dans votre base de donnée
@@ -99,7 +99,7 @@ if (isset($_POST['cpm_trans_id'])) {
                 die();
             }
             // mise à jour des transactions dans la base de donnée
-            /*  $commande->update(); */
+              $commande->update(); 
 
         }
         else{

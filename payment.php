@@ -80,7 +80,7 @@
                                 <div class="mb-3">
                                     <label for="amount" class="form-label">Montant</label>
                                     <div class="mb-3 btn-danger">
-                                        <h4>Montant Total: <?php echo $totalAmount; ?> XOF</h4>
+                                        <h4>Montant Total: <?php echo $totalAmount; ?></h4>
                                         <!-- Ajoutez un champ caché pour le montant total -->
                                         <input type="hidden" name="amount" value="<?php echo $totalAmount; ?>">
                                     </div>
