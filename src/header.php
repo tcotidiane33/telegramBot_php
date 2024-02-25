@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>LIBRARY_CI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -10,11 +10,29 @@
     <link rel="stylesheet" href="/interface.css">
 
     <link rel="stylesheet" href="/cinetpay/src/style.css">
+    	<!-- Tell the browser to be responsive to screen width -->
+  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  	<!-- Bootstrap 3.3.7 -->
+  	<link rel="stylesheet" href="/cinetpay/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  	<!-- DataTables -->
+    <link rel="stylesheet" href="/cinetpay/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  	<!-- Font Awesome -->
+  	<link rel="stylesheet" href="/cinetpay/bower_components/font-awesome/css/font-awesome.min.css">
+  	<!-- Theme style -->
+  	<link rel="stylesheet" href="/cinetpay/dist/css/AdminLTE.min.css">
+  	<!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  	<link rel="stylesheet" href="/cinetpay/dist/css/skins/_all-skins.min.css">
+
+    <!-- Google Font -->
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
         body {
-            background: linear-gradient(to right, rgb(255, 145, 0) 42%, rgb(255, 255, 255) 73%, rgba(60, 255, 0, 0.541) 100%);
+            background: linear-gradient(to right, rgb(255, 145, 0) 3%, rgb(255, 255, 255) 5%, #04CF74 120%);            
             font-family: 'Roboto', sans-serif;
             margin: 0;
         }
